@@ -73,7 +73,7 @@ with a as
     , sum(extract(epoch from endtime-starttime))/24.0/60.0/60.0 as vent_day
     , min(starttime) as starttime_first
     , max(endtime) as endtime_last
-  from ventdurations vd
+  from ventilation_durations vd
   group by icustay_id
 )
 , serv as
@@ -188,7 +188,7 @@ with a as
     and s.rn = 1
   left join aline_vaso_flag vf
     on ie.icustay_id = vf.icustay_id
-  left join angus_sepsis sep
+  left join angus sep
     on ie.hadm_id = sep.hadm_id
   where co.intime > (pat.dob + interval '16' year) -- only adults
 )
