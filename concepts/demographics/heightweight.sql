@@ -16,11 +16,11 @@ WITH ht_stg AS
       THEN
         CASE
         -- rule for neonates
-        WHEN c.charttime <= DATETIME_ADD(pt.dob, INTERVAL 1 YEAR)
+        WHEN c.charttime <= DATETIME_ADD(pt.dob, INTERVAL '1' YEAR)
          AND (c.valuenum * 2.54) < 80
           THEN c.valuenum * 2.54
         -- rule for adults
-        WHEN c.charttime >  DATETIME_ADD(pt.dob, INTERVAL 1 YEAR)
+        WHEN c.charttime >  DATETIME_ADD(pt.dob, INTERVAL '1' YEAR)
          AND (c.valuenum * 2.54) > 120
          AND (c.valuenum * 2.54) < 230
           THEN c.valuenum * 2.54
@@ -28,11 +28,11 @@ WITH ht_stg AS
       ELSE
         CASE
         -- rule for neonates
-        WHEN c.charttime <= DATETIME_ADD(pt.dob, INTERVAL 1 YEAR)
+        WHEN c.charttime <= DATETIME_ADD(pt.dob, INTERVAL '1' YEAR)
          AND c.valuenum < 80
           THEN c.valuenum
         -- rule for adults
-        WHEN c.charttime >  DATETIME_ADD(pt.dob, INTERVAL 1 YEAR)
+        WHEN c.charttime >  DATETIME_ADD(pt.dob, INTERVAL '1' YEAR)
          AND c.valuenum > 120
          AND c.valuenum < 230
           THEN c.valuenum

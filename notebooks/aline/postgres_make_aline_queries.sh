@@ -21,12 +21,10 @@ echo 'The scripts drop views before creating them, and these notices indicate no
 echo '==='
 echo ''
 
-echo 'aline_vaso_flag.sql'
-{ echo "${PSQL_PREAMBLE};"; cat aline_vaso_flag.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
+echo 'aline_bmi.sql'
+{ echo "${PSQL_PREAMBLE};"; cat aline_bmi.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
 
-echo 'heightweight.sql'
-cd ../../concepts/demographics
-{ echo "${PSQL_PREAMBLE}; DROP MATERIALIZED VIEW IF EXISTS heightweight CASCADE; CREATE MATERIALIZED VIEW heightweight AS "; cat heightweight.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
-cd -
+echo 'aline_.sql'
+{ echo "${PSQL_PREAMBLE};"; cat aline_vaso_flag.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
 
 echo 'Finished creating tables.'

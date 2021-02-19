@@ -24,9 +24,4 @@ echo ''
 echo 'aline_vaso_flag.sql'
 { echo "${PSQL_PREAMBLE};"; cat aline_vaso_flag.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
 
-echo 'heightweight.sql'
-cd ../../concepts/demographics
-{ echo "${PSQL_PREAMBLE}; DROP MATERIALIZED VIEW IF EXISTS heightweight CASCADE; CREATE MATERIALIZED VIEW heightweight AS "; cat heightweight.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
-cd -
-
 echo 'Finished creating tables.'
