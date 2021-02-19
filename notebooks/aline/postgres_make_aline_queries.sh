@@ -21,10 +21,28 @@ echo 'The scripts drop views before creating them, and these notices indicate no
 echo '==='
 echo ''
 
+echo 'aline_cohort.sql'
+{ echo "${PSQL_PREAMBLE};"; cat aline_cohort.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
+
 echo 'aline_bmi.sql'
 { echo "${PSQL_PREAMBLE};"; cat aline_bmi.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
 
-echo 'aline_.sql'
-{ echo "${PSQL_PREAMBLE};"; cat aline_vaso_flag.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
+echo 'aline_cohort_simple.sql'
+{ echo "${PSQL_PREAMBLE};"; cat aline_cohort_simple.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
+
+echo 'aline_icd.sql'
+{ echo "${PSQL_PREAMBLE};"; cat aline_icd.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
+
+echo 'aline_labs.sql'
+{ echo "${PSQL_PREAMBLE};"; cat aline_labs.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
+
+echo 'aline_sedatives.sql'
+{ echo "${PSQL_PREAMBLE};"; cat aline_sedatives.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
+
+echo 'aline_sofa.sql'
+{ echo "${PSQL_PREAMBLE};"; cat aline_sofa.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
+
+echo 'aline_vitals.sql'
+{ echo "${PSQL_PREAMBLE};"; cat aline_vitals.sql; } | sed -r -e "${REGEX_DATETIME_DIFF}" | sed -r -e "${REGEX_SCHEMA}" | psql ${CONNSTR}
 
 echo 'Finished creating tables.'

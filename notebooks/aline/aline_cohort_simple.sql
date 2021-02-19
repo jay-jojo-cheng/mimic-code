@@ -49,7 +49,7 @@ with a as
   select icustay_id
     , min(starttime) as vent_starttime
     , max(endtime) as vent_endtime
-  from ventdurations vd
+  from ventilation_durations vd
   group by icustay_id
 )
 -- first service
@@ -60,7 +60,7 @@ with a as
         PARTITION BY icu.icustay_id
         ORDER BY se.transfertime DESC
       ) as rn
-    from icustays ie
+    from icustays icu
     inner join services se
       on icu.hadm_id = se.hadm_id
       and se.transfertime < icu.intime + interval '2' hour
@@ -102,8 +102,10 @@ with a as
   left join serv s
     on icu.icustay_id = s.icustay_id
     and s.rn = 1
-  left join angus_sepsis sep
+  left join angus sep
     on icu.hadm_id = sep.hadm_id
+  left join aline_vaso_flag vf
+    on icu.subject_id = vf.subject_id
 )
 select
     co.subject_id, co.hadm_id, co.icustay_id
