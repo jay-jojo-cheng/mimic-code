@@ -19,7 +19,7 @@ This notebook creates a propensity score using a dataset of patients with indwel
 First, we load the data and convert some variables into factors. Note this code assumes that you have the csv file available in "~/git/mimic-code/notebooks/aline/".
 
 ```{r load}
-wdpath = paste(path.expand("~"),'git/mimic-code/notebooks/aline/',sep='/')
+wdpath = paste(path.expand("~"),'/mimic-code/notebooks/aline/',sep='/')
 setwd(wdpath)
 dataset = read.csv(file="aline_data.csv",head=TRUE,sep=",")
 ```
